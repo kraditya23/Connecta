@@ -57,15 +57,6 @@ class NotificationSettingsScreen extends ConsumerWidget {
                     ),
                   ),
                 ]),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Text(
-                    'These preferences control which emails and push notifications you receive - '
-                    'actually sending them requires a notifications backend, which is not wired up yet.',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ),
               ],
             ),
     );

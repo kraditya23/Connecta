@@ -110,11 +110,7 @@ flutter_launcher_icons:
 
 flutter_native_splash:
   color: "#6366F1"
-  image: assets/splash/connecta_text.png
   color_dark: "#6366F1"
-  image_dark: assets/splash/connecta_text.png
   android_12:
     color: "#6366F1"
-    image: assets/splash/connecta_text.png
     color_dark: "#6366F1"
-    image_dark: assets/splash/connecta_text.png

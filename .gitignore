@@ -91,3 +91,6 @@ supabase/config.toml
 **/android/key.properties
 **/*.keystore
 **/*.jks
+
+# Proeject context
+project-context.md

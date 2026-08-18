@@ -111,7 +111,9 @@ class SupabaseAuthProvider implements AuthProvider {
   @override
   Future<AuthUser> signInWithGoogle() async {
     try {
-      final googleSignIn = GoogleSignIn();
+      final googleSignIn = GoogleSignIn(
+        serverClientId: const String.fromEnvironment('GOOGLE_WEB_CLIENT_ID'),
+      );
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) throw UserNotFoundAuthException();
 

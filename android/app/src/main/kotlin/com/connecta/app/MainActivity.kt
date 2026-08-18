@@ -1,4 +1,4 @@
-package com.example.card_app
+package com.connecta.app
 
 import android.content.ContentValues
 import android.content.Intent

@@ -341,11 +341,10 @@ class _FieldGroup extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: CupertinoTextField(
+                    child: TextField(
                       controller: field.controller,
-                      placeholder: placeholder,
                       keyboardType: keyboardType,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      decoration: InputDecoration(hintText: placeholder),
                     ),
                   ),
                   IconButton(

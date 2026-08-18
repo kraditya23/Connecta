@@ -50,6 +50,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   flutter_native_splash: ^2.4.3
+  flutter_launcher_icons: ^0.14.0
   build_runner: ^2.4.15
   freezed: ^3.0.6
   json_serializable: ^6.9.4
@@ -99,13 +100,21 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_logo.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#6366F1"
+  adaptive_icon_foreground: "assets/icons/app_logo_foreground.png"
+
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/icons/app_logo.png
-  color_dark: "#121212"
-  image_dark: assets/icons/app_logo.png
+  color: "#6366F1"
+  image: assets/splash/connecta_text.png
+  color_dark: "#6366F1"
+  image_dark: assets/splash/connecta_text.png
   android_12:
-    color: "#ffffff"
-    image: assets/icons/app_logo.png
-    color_dark: "#121212"
-    image_dark: assets/icons/app_logo.png
+    color: "#6366F1"
+    image: assets/splash/connecta_text.png
+    color_dark: "#6366F1"
+    image_dark: assets/splash/connecta_text.png

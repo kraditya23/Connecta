@@ -19,8 +19,9 @@ class TermsPrivacyScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              'Placeholder content. This is a generic starting template, not a finished legal '
-              'document - have an actual lawyer review and tailor this before launch.',
+              'Connecta is in active development. Features and terms may change, and you\'re '
+              'using the app at your own discretion. Please don\'t upload sensitive personal '
+              'information you wouldn\'t want shared broadly.',
               style: theme.textTheme.bodySmall,
             ),
           ),

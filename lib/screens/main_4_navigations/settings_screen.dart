@@ -1,12 +1,9 @@
 import 'package:card_app/providers/settings_provider.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/account_details_screen.dart';
-import 'package:card_app/screens/main_4_navigations/settings_subscreens/analytics_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/change_password_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/contact_support_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/delete_account_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/faq_screen.dart';
-import 'package:card_app/screens/main_4_navigations/settings_subscreens/message_snippets_screen.dart';
-import 'package:card_app/screens/main_4_navigations/settings_subscreens/nfc_devices_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/notification_settings_screen.dart';
 import 'package:card_app/screens/main_4_navigations/settings_subscreens/terms_privacy_screen.dart';
 import 'package:card_app/utilities/constants.dart';
@@ -142,27 +139,6 @@ class SettingsScreen extends ConsumerWidget {
               subtitle: 'Connection alerts & updates',
               onTap: () =>
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationSettingsScreen())),
-            ),
-          ]),
-
-          const SizedBox(height: 24),
-          const SectionHeader('Your card'),
-          SettingsGroup(children: [
-            SettingsTile(
-              icon: Icons.bar_chart_rounded,
-              title: 'Analytics',
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AnalyticsScreen())),
-            ),
-            SettingsTile(
-              icon: Icons.nfc_rounded,
-              title: 'NFC devices',
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NfcDevicesScreen())),
-            ),
-            SettingsTile(
-              icon: Icons.chat_bubble_outline_rounded,
-              title: 'Message snippets',
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const MessageSnippetsScreen())),
             ),
           ]),
 

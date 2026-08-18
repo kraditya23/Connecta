@@ -7,4 +7,4 @@ const String defaultCover = 'assets/user_profile/default_cover.jpg';
 const String appName = 'Connecta';
 const String appVersion = '1.0.0';
 const String appBuildNumber = '1';
-const String supportEmail = 'support@connecta.app';
+const String supportEmail = 'kraditya2310@gmail.com';

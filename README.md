@@ -31,8 +31,6 @@ The backend is powered by [Supabase](https://supabase.com) (Postgres + Auth + St
 - 🔒 **Secure Auth** — Email/password sign-up with verification flow, plus one-tap Google Sign-In
 - ☁️ **Real-time Backed by Supabase** — Postgres with RLS, Supabase Storage for profile images, and Edge Functions for sensitive operations
 - 🌙 **Dark Mode** — Full light/dark theme support driven by system preference or manual toggle
-- *(Add your feature here)*
-- *(Add your feature here)*
 
 ---
 

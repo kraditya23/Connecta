@@ -76,7 +76,7 @@ class _ProfilePageState extends ConsumerState<ConnectionProfilePage> {
               final result = await showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).cardColor,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),

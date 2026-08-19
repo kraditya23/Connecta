@@ -58,14 +58,8 @@ class _ConnectionMenuBottomSheetState extends ConsumerState<ConnectionMenuBottom
                   }
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.note_add),
-                title: const Text('Add Notes'),
-                onTap: () {
-                  // TODO: Implement Add Notes action
-                  Navigator.pop(context);
-                },
-              ),
+              // TODO: "Add Notes" hidden until implemented — re-enable here
+              // once the notes feature exists.
               ListTile(
                 leading: const Icon(Icons.delete, color: Colors.red),
                 title: const Text('Delete Connection', style: TextStyle(color: Colors.red)),

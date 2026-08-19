@@ -9,11 +9,12 @@ class ProfileLinkBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Material(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: theme.colorScheme.surfaceContainerHighest,
         elevation: 1,
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
@@ -32,17 +33,17 @@ class ProfileLinkBox extends StatelessWidget {
                 Flexible(
                   child: Text(
                     profileLink,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                      color: theme.colorScheme.onSurface,
                       letterSpacing: 0.2,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const SizedBox(width: 12),
-                Icon(Icons.copy_rounded, size: 20, color: Colors.grey[600]),
+                Icon(Icons.copy_rounded, size: 20, color: theme.colorScheme.onSurfaceVariant),
               ],
             ),
           ),

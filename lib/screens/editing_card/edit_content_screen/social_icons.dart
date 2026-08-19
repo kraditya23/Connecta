@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:card_app/providers/user_provider.dart';
+import 'package:card_app/utilities/url_utils.dart';
 import 'package:card_app/widgets/snackbars.dart';
 
 const _socialNames = [
@@ -51,21 +52,6 @@ class _EditSocialIconsScreenState extends ConsumerState<EditSocialIconsScreen> {
 
   String _iconAssetFor(String name) => 'assets/icons/social_icons/${name.toLowerCase()}.png';
 
-  // Returns a valid URL string, or null if the input is not URL-like.
-  // Auto-prepends https:// when the input looks like a bare domain (e.g.
-  // "linkedin.com/in/aditya") so copy-paste without a scheme still works.
-  // Rejects bare usernames (no dot, no scheme) rather than silently saving
-  // a broken link.
-  String? _normalizeUrl(String raw) {
-    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
-    final withScheme = 'https://$raw';
-    final uri = Uri.tryParse(withScheme);
-    if (uri != null && uri.hasScheme && uri.hasAuthority && uri.host.contains('.')) {
-      return withScheme;
-    }
-    return null;
-  }
-
   Future<void> _submit() async {
     if (_isSaving) return;
     setState(() => _isSaving = true);
@@ -79,7 +65,7 @@ class _EditSocialIconsScreenState extends ConsumerState<EditSocialIconsScreen> {
           continue;
         }
 
-        final url = _normalizeUrl(raw);
+        final url = normalizeUrl(raw);
         if (url == null) {
           if (mounted) {
             context.showErrorSnackBar(

@@ -53,14 +53,16 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
         padding: const EdgeInsets.all(20),
         children: [
           Text(
-            'Your display name is shown on your public card and can be updated below. '
-            'Your sign-in email is shown for reference — it cannot be changed from within the app.',
+            'This is your account profile name, used inside the app. It does not appear '
+            'on your public card — to change the name shown on your card, edit your '
+            'contact info from the Your Card tab. Your sign-in email is shown for '
+            'reference and cannot be changed from within the app.',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(height: 20),
           TextField(
             controller: _nameController,
-            decoration: const InputDecoration(labelText: 'Display name', prefixIcon: Icon(Icons.person_outline)),
+            decoration: const InputDecoration(labelText: 'Profile name', prefixIcon: Icon(Icons.person_outline)),
           ),
           const SizedBox(height: 10),
           Align(

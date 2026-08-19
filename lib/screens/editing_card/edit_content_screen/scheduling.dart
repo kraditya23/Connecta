@@ -1,4 +1,5 @@
 import 'package:card_app/providers/user_provider.dart';
+import 'package:card_app/utilities/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -30,9 +31,8 @@ class _SchedulingPageState extends ConsumerState<SchedulingPage> {
   }
 
   String? _urlValidator(String? value) {
-    if (value == null || value.isEmpty) return 'Please enter your scheduling link.';
-    final uri = Uri.tryParse(value);
-    if (uri == null || !uri.hasScheme || !uri.hasAuthority) {
+    if (value == null || value.trim().isEmpty) return 'Please enter your scheduling link.';
+    if (normalizeUrl(value) == null) {
       return 'Please enter a valid URL (e.g., https://example.com).';
     }
     return null;
@@ -123,7 +123,10 @@ class _SchedulingPageState extends ConsumerState<SchedulingPage> {
                         if (!(_formKey.currentState?.validate() ?? false)) return;
                         setState(() => _isSaving = true);
                         try {
-                          await ref.read(userProvider.notifier).updateSchedulingLink(_controller.text.trim());
+                          // Store the normalized URL (scheme prepended if the
+                          // user typed a bare domain) so the card can launch it.
+                          final normalized = normalizeUrl(_controller.text) ?? _controller.text.trim();
+                          await ref.read(userProvider.notifier).updateSchedulingLink(normalized);
                           if (mounted) context.showSuccessSnackBar(message: 'Scheduling link updated!');
                         } catch (e) {
                           if (mounted) context.showErrorSnackBar(message: 'Failed to update link: ${e.toString()}');

@@ -140,7 +140,7 @@ class _ShareCardBottomSheetState extends State<ShareCardBottomSheet> {
                       ),
                       const SizedBox(height: 20),
                       Material(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         elevation: 4,
                         borderRadius: BorderRadius.circular(16),
                         child: ClipRRect(
@@ -167,7 +167,7 @@ class _ShareCardBottomSheetState extends State<ShareCardBottomSheet> {
                                 },
                                 iconColor: primaryColor,
                               ),
-                              const Divider(height: 1, color: Colors.grey),
+                              Divider(height: 1, color: Theme.of(context).dividerColor),
                               // Share via SMS (body + URL)…
                               ShareOptionTile(
                                 icon: Icons.sms,
@@ -198,7 +198,7 @@ class _ShareCardBottomSheetState extends State<ShareCardBottomSheet> {
                                 },
                                 iconColor: primaryColor,
                               ),
-                              const Divider(height: 1, color: Colors.grey),
+                              Divider(height: 1, color: Theme.of(context).dividerColor),
                               // “Save QR to phone” now just opens a share sheet for the PNG…
                               ShareOptionTile(
                                 icon: Icons.download,

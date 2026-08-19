@@ -18,8 +18,9 @@ class ShareOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Material(
-      color: Colors.white,
+      color: theme.cardColor,
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -32,7 +33,7 @@ class ShareOptionTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(fontSize: 17),
+                  style: theme.textTheme.bodyLarge?.copyWith(fontSize: 17),
                 ),
               ),
               if (trailingText != null)
@@ -40,10 +41,10 @@ class ShareOptionTile extends StatelessWidget {
                   trailingText!,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey[400],
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
-              const Icon(Icons.chevron_right, color: Colors.grey, size: 22), // Optional: remove if you don't want arrow
+              Icon(Icons.chevron_right, color: theme.colorScheme.onSurfaceVariant, size: 22),
             ],
           ),
         ),

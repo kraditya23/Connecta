@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:card_app/providers/user_provider.dart';
+import 'package:card_app/utilities/url_utils.dart';
 import 'package:card_app/widgets/snackbars.dart';
 
 class LinksPage extends ConsumerStatefulWidget {
@@ -100,11 +101,25 @@ class _LinksPageState extends ConsumerState<LinksPage> {
       return;
     }
 
+    // Normalize + validate every URL the same way socials and scheduling do,
+    // so a link like "myportfolio" is rejected rather than saved unopenable.
+    final normalizedUrls = <String>[];
+    for (var i = 0; i < linkUrl.length; i++) {
+      final normalized = normalizeUrl(linkUrl[i]);
+      if (normalized == null) {
+        context.showErrorSnackBar(
+          message: 'Link ${i + 1}: enter a valid URL (e.g. https://example.com)',
+        );
+        return;
+      }
+      normalizedUrls.add(normalized);
+    }
+
     setState(() => _isLoading = true);
     try {
       await ref.read(userProvider.notifier).updateLinksSection(
             linksText: linksText,
-            linkUrl: linkUrl,
+            linkUrl: normalizedUrls,
             linkSectionHeader: header,
           );
       setState(() => _hasUnsavedChanges = false);

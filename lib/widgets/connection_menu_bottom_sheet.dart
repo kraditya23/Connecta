@@ -1,10 +1,12 @@
 import 'package:card_app/models/user_data.dart';
+import 'package:card_app/providers/connections_provider.dart';
 import 'package:card_app/services/native_contacts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'dart:ui';
 
-class ConnectionMenuBottomSheet extends StatefulWidget {
+class ConnectionMenuBottomSheet extends ConsumerStatefulWidget {
   final String connectionUsername;
   final UserData userData;
 
@@ -15,11 +17,11 @@ class ConnectionMenuBottomSheet extends StatefulWidget {
   });
 
   @override
-  State<ConnectionMenuBottomSheet> createState() =>
+  ConsumerState<ConnectionMenuBottomSheet> createState() =>
       _ConnectionMenuBottomSheetState();
 }
 
-class _ConnectionMenuBottomSheetState extends State<ConnectionMenuBottomSheet> {
+class _ConnectionMenuBottomSheetState extends ConsumerState<ConnectionMenuBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -109,6 +111,9 @@ class _ConnectionMenuBottomSheetState extends State<ConnectionMenuBottomSheet> {
                         'delete_connection',
                         params: {'target_username': widget.connectionUsername},
                       );
+                      // Refresh the connections list so the deleted connection
+                      // disappears when the user returns to the Connections tab.
+                      ref.invalidate(connectionsProvider);
                       Navigator.pop(context); // Remove loading overlay
                       Navigator.pop(context, true); // Close bottom sheet
                     } catch (e) {

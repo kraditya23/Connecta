@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:card_app/providers/user_provider.dart';
+import 'package:card_app/providers/connections_provider.dart';
 import 'package:card_app/widgets/user_card.dart';
 import 'package:card_app/models/user_data.dart';
 
@@ -138,6 +139,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     params: {'target_username': widget.profileUsername},
                                   );
                                   if (!mounted) return;
+                                  // Refresh the connections list so the new
+                                  // connection shows up when the user returns
+                                  // to the Connections tab.
+                                  ref.invalidate(connectionsProvider);
                                   setState(() => _isConnected = true);
                                   context.showSuccessSnackBar(message: 'Contacts Exchanged!');
                                 } catch (e) {

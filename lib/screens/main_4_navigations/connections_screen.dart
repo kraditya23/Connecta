@@ -1,4 +1,3 @@
-import 'package:card_app/screens/connection_profile_page.dart';
 import 'package:card_app/utilities/constants.dart';
 import 'package:card_app/widgets/ui/empty_state.dart';
 import 'package:flutter/material.dart';
@@ -136,7 +135,7 @@ class _ConnectionsScreenState extends ConsumerState<ConnectionsScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ConnectionProfilePage(
+                            builder: (context) => ProfilePage(
                               uid: conn.uid,
                               profileUsername: conn.username,
                               fromConnections: true,

@@ -85,6 +85,18 @@ TextTheme _buildTextTheme(TextTheme base, Color displayColor, Color bodyColor) {
   );
 }
 
+/// google_fonts builds the app TextTheme with `inherit: false`. The button /
+/// input / app-bar text styles we feed into ThemeData must therefore also be
+/// `inherit: false`, otherwise `AnimatedDefaultTextStyle` inside those widgets
+/// tries to lerp an `inherit: true` style against an `inherit: false` one during
+/// a theme switch and throws "Failed to interpolate TextStyles with different
+/// inherit values" for a frame (the red error flash). We build them from
+/// GoogleFonts.inter (so they keep the Inter family) and force `inherit: false`.
+final TextStyle _btn16 =
+    GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600).copyWith(inherit: false);
+final TextStyle _btn14 =
+    GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600).copyWith(inherit: false);
+
 final ColorScheme _lightScheme = ColorScheme.fromSeed(
   seedColor: primaryColor,
   brightness: Brightness.light,
@@ -136,7 +148,7 @@ ThemeData appThemeData = ThemeData(
       minimumSize: const Size.fromHeight(52),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       elevation: 0,
-      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      textStyle: _btn16,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
     ),
   ),
@@ -145,14 +157,14 @@ ThemeData appThemeData = ThemeData(
       foregroundColor: primaryColor,
       minimumSize: const Size.fromHeight(52),
       side: const BorderSide(color: primaryColor, width: 1.4),
-      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      textStyle: _btn16,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
       foregroundColor: primaryColor,
-      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+      textStyle: _btn14,
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
@@ -246,7 +258,7 @@ ThemeData appDarkThemeData = ThemeData(
       minimumSize: const Size.fromHeight(52),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       elevation: 0,
-      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      textStyle: _btn16,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
     ),
   ),
@@ -255,7 +267,7 @@ ThemeData appDarkThemeData = ThemeData(
       foregroundColor: _darkScheme.primary,
       minimumSize: const Size.fromHeight(52),
       side: BorderSide(color: _darkScheme.primary, width: 1.4),
-      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      textStyle: _btn16,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
     ),
   ),

@@ -19,7 +19,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  app_links: ^6.4.1
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.6.1

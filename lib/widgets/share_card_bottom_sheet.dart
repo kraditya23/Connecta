@@ -13,11 +13,8 @@ import 'package:card_app/models/user_data.dart';
 import 'package:card_app/utilities/app_colors.dart';
 import 'package:card_app/utilities/vcard_utils.dart';
 import 'package:card_app/utilities/profile_link_utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'qr_code_with_image.dart';
 import 'package:card_app/utilities/constants.dart';
-import 'profile_link_box.dart';
-import 'list_item.dart';
 
 class ShareCardBottomSheet extends StatefulWidget {
   final UserData userData;
@@ -125,11 +122,12 @@ class _ShareCardBottomSheetState extends State<ShareCardBottomSheet> {
                       const SizedBox(height: 20),
                       Text(
                         showVcard
-                            ? 'Scan to save contact offline'
-                            : 'Scan this to view my business card',
+                            ? 'Scan to save my contact offline'
+                            : 'Scan with Connecta to view my card',
+                        textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 16),
                       ),
-                      ProfileLinkBox(profileLink: profileLink),
+                      const SizedBox(height: 8),
                       SwitchListTile(
                         value: showVcard,
                         activeColor: primaryColor,
@@ -139,75 +137,12 @@ class _ShareCardBottomSheetState extends State<ShareCardBottomSheet> {
                         title: const Text('Offline QR (vCard)'),
                       ),
                       const SizedBox(height: 20),
-                      Material(
-                        color: Theme.of(context).cardColor,
-                        elevation: 4,
-                        borderRadius: BorderRadius.circular(16),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Column(
-                            children: [
-                              // Share profile link (URL)…
-                              ShareOptionTile(
-                                icon: Icons.link,
-                                title: 'Share profile link',
-                                onTap: () async {
-                                  final shareText = StringBuffer()
-                                    ..writeln(
-                                      'Check out my profile on Connecta:',
-                                    )
-                                    ..writeln(profileLink);
-                                  await SharePlus.instance.share(
-                                    ShareParams(
-                                      text: shareText.toString(),
-                                      subject:
-                                          'Connecta Profile: ${widget.userData.username}',
-                                    ),
-                                  );
-                                },
-                                iconColor: primaryColor,
-                              ),
-                              Divider(height: 1, color: Theme.of(context).dividerColor),
-                              // Share via SMS (body + URL)…
-                              ShareOptionTile(
-                                icon: Icons.sms,
-                                title: 'Share via text',
-                                onTap: () async {
-                                  final shareText = StringBuffer()
-                                    ..writeln(
-                                      'Check out my profile on Connecta:',
-                                    )
-                                    ..writeln(profileLink);
-                                  final encodedText = Uri.encodeComponent(
-                                    shareText.toString(),
-                                  );
-                                  final uri = Uri.parse(
-                                    'sms:?body=$encodedText',
-                                  );
-                                  if (await canLaunchUrl(uri)) {
-                                    await launchUrl(uri);
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          'Could not open SMS app.',
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
-                                iconColor: primaryColor,
-                              ),
-                              Divider(height: 1, color: Theme.of(context).dividerColor),
-                              // “Save QR to phone” now just opens a share sheet for the PNG…
-                              ShareOptionTile(
-                                icon: Icons.download,
-                                title: 'Share QR image',
-                                onTap: _shareQrImage,
-                                iconColor: primaryColor,
-                              ),
-                            ],
-                          ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          icon: const Icon(Icons.ios_share_rounded, size: 20),
+                          label: const Text('Share QR image'),
+                          onPressed: _shareQrImage,
                         ),
                       ),
                     ],

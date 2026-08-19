@@ -1,5 +1,4 @@
 import 'package:card_app/providers/auth_session_provider.dart';
-import 'package:card_app/providers/deeplink_user_provider.dart';
 import 'package:card_app/providers/user_exists_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,7 +7,6 @@ enum AuthState {
   notLoggedIn,
   needsOnboarding,
   complete,
-  redirectingToProfile,
   error,
 }
 
@@ -29,9 +27,6 @@ final authStateProvider = Provider<AuthState>((ref) {
 
   final exists = existsAsync.value ?? false;
   if (!exists) return AuthState.needsOnboarding;
-
-  final deepLinkUser = ref.watch(deepLinkUserProvider);
-  if (deepLinkUser != null) return AuthState.redirectingToProfile;
 
   return AuthState.complete;
 });

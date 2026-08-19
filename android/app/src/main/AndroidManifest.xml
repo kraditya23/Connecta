@@ -34,10 +34,8 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <!-- Custom URI scheme: handles both Supabase auth redirects
-                 (connecta://login-callback) and profile deep links
-                 (connecta://profile/<username>). The unscoped scheme catches
-                 both; routing is handled in Dart. -->
+            <!-- Custom URI scheme for Supabase auth redirects
+                 (connecta://login-callback). Handled by supabase_flutter. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>

@@ -27,16 +27,12 @@ dependencies:
   supabase_flutter: ^2.0.0
   image: ^4.5.4
   image_picker: ^1.1.2
-  json_annotation: ^4.9.0
   mobile_scanner: ^7.0.0
   path_provider: ^2.1.5
-  permission_handler: ^12.0.0+1
   pretty_qr_code: ^3.4.0
   share_plus: ^11.0.0
   url_launcher: ^6.3.1
 
-  core_ui:
-    path: ../core_ui
   google_fonts: ^6.3.2
 
 dev_dependencies:
@@ -51,9 +47,6 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_native_splash: ^2.4.3
   flutter_launcher_icons: ^0.14.0
-  build_runner: ^2.4.15
-  freezed: ^3.0.6
-  json_serializable: ^6.9.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

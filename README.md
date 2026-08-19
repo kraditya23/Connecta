@@ -44,7 +44,7 @@ The backend is powered by [Supabase](https://supabase.com) (Postgres + Auth + St
 | **Authentication** | Supabase Auth (email + password, Google Sign-In via `google_sign_in`) |
 | **Image Storage** | Supabase Storage (`profile-assets` bucket) |
 | **Edge Functions** | Supabase Edge Functions (Deno) — account deletion |
-| **Deep Links** | [Branch SDK](https://branch.io) (`flutter_branch_sdk`) |
+| **Deep Links** | Custom `connecta://` URI scheme (`app_links`) — `connecta://profile/<username>` |
 | **QR Codes** | `mobile_scanner` (scan), `pretty_qr_code` (generate) |
 | **Fonts** | Google Fonts |
 | **Platforms** | Android, iOS |
@@ -60,7 +60,6 @@ Make sure the following are installed and configured before cloning:
 - [Android Studio](https://developer.android.com/studio) or [Xcode](https://developer.apple.com/xcode/) for simulators and device deployment
 - A [Supabase](https://supabase.com) account (free tier is sufficient)
 - A [Google Cloud Console](https://console.cloud.google.com) project with OAuth 2.0 credentials (for Google Sign-In)
-- A [Branch](https://branch.io) account (for deep links; free tier available)
 
 Verify your Flutter environment is healthy before proceeding:
 

@@ -34,31 +34,17 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <!-- Supabase auth redirect (email verification, password reset) -->
+            <!-- Custom URI scheme: handles both Supabase auth redirects
+                 (connecta://login-callback) and profile deep links
+                 (connecta://profile/<username>). The unscoped scheme catches
+                 both; routing is handled in Dart. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="connecta"/>
             </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="https"
-                      android:host="1efy2.app.link"
-                      android:pathPrefix="/" />
-            </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="https"
-                      android:host="1efy2-alternate.app.link"
-                      android:pathPrefix="/" />
-            </intent-filter>
         </activity>
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_aytfkyxduQrujaZyJwtT5cocCwbLIs7j" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

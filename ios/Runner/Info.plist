@@ -68,13 +68,6 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
-		<key>branch_key</key>
-		<dict>
-			<key>live</key>
-			<string>key_live_aytfkyxduQrujaZyJwtT5cocCwbLIs7j</string>
-		</dict>
-		<key>branch_app_domain</key>
-		<string>1efy2.app.link</string>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>connecta</string>

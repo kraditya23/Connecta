@@ -22,11 +22,20 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
     super.dispose();
   }
 
+  /// Extracts the username from a `connecta://profile/<username>` link.
+  ///
+  /// For `connecta://profile/aditya`, `Uri.parse` yields host `profile` and
+  /// pathSegments `[aditya]`, so we validate the scheme + host and take the
+  /// last path segment. Old Branch QR codes (`https://1efy2.app.link/<hash>`)
+  /// are intentionally rejected — they never resolved to a username anyway.
   String? extractUsername(String code) {
     try {
       final uri = Uri.parse(code);
-      if (uri.pathSegments.isNotEmpty) {
-        return uri.pathSegments.last.trim();
+      if (uri.scheme == 'connecta' &&
+          uri.host == 'profile' &&
+          uri.pathSegments.isNotEmpty) {
+        final username = uri.pathSegments.last.trim();
+        return username.isEmpty ? null : username;
       }
     } catch (_) {
       return null;
@@ -67,7 +76,9 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('QR Scan Failed'),
-        content: const Text('This QR code does not point to a valid Connecta profile.'),
+        content: const Text(
+          'This QR code does not point to a valid Connecta profile.',
+        ),
         actions: [
           TextButton(
             onPressed: () {
@@ -118,7 +129,10 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
                   onTap: () => Navigator.of(context).pop(),
                   child: Container(
                     padding: const EdgeInsets.all(6),
-                    decoration: const BoxDecoration(color: Colors.black45, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(
+                      color: Colors.black45,
+                      shape: BoxShape.circle,
+                    ),
                     child: const Icon(Icons.close, color: Colors.white),
                   ),
                 ),
@@ -148,13 +162,22 @@ class ScannerOverlayPainter extends CustomPainter {
     final double holeWidth = size.width * holeWidthFraction;
     final double holeHeight = holeWidth;
     final Offset center = Offset(size.width / 2, size.height / 2);
-    final Rect holeRect = Rect.fromCenter(center: center, width: holeWidth, height: holeHeight);
+    final Rect holeRect = Rect.fromCenter(
+      center: center,
+      width: holeWidth,
+      height: holeHeight,
+    );
 
     final Rect fullScreenRect = Rect.fromLTWH(0, 0, size.width, size.height);
     canvas.saveLayer(fullScreenRect, Paint());
 
     canvas.drawRect(fullScreenRect, Paint()..color = overlayColor);
-    canvas.drawRect(holeRect, Paint()..blendMode = BlendMode.clear..style = PaintingStyle.fill);
+    canvas.drawRect(
+      holeRect,
+      Paint()
+        ..blendMode = BlendMode.clear
+        ..style = PaintingStyle.fill,
+    );
     canvas.restore();
 
     const double strokeWidth = 4.0;
@@ -234,7 +257,10 @@ class _FlashlightButtonState extends State<_FlashlightButton> {
       },
       child: Container(
         padding: const EdgeInsets.all(8),
-        decoration: const BoxDecoration(color: Colors.black45, shape: BoxShape.circle),
+        decoration: const BoxDecoration(
+          color: Colors.black45,
+          shape: BoxShape.circle,
+        ),
         child: Icon(
           _isTorchOn ? Icons.flashlight_on : Icons.flashlight_off,
           color: Colors.white,
